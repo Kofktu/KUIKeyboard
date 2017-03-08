@@ -2,6 +2,8 @@
 Keyboard Handler in iOS, 
 It also perfectly works with UIScrollViewKeyboardDismissMode.interactive.
 
+![alt tag](Screenshot/Example.gif)
+
 ## Requirements
 
 - iOS 8.0+
