@@ -12,6 +12,8 @@
 		C3EC73091E6FE9B800854164 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3EC73071E6FE9B800854164 /* Main.storyboard */; };
 		C3EC730B1E6FE9B800854164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3EC730A1E6FE9B800854164 /* Assets.xcassets */; };
 		C3EC730E1E6FE9B800854164 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3EC730C1E6FE9B800854164 /* LaunchScreen.storyboard */; };
+		C3EC73211E6FF93900854164 /* KUIKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EC731A1E6FE9BE00854164 /* KUIKeyboard.framework */; };
+		C3EC73221E6FF93900854164 /* KUIKeyboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3EC731A1E6FE9BE00854164 /* KUIKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,7 +24,28 @@
 			remoteGlobalIDString = C3EC72EC1E6FE98400854164;
 			remoteInfo = KUIKeyboard;
 		};
+		C3EC73231E6FF93900854164 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3EC73151E6FE9BE00854164 /* KUIKeyboard.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C3EC72EB1E6FE98400854164;
+			remoteInfo = KUIKeyboard;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C3EC73251E6FF93900854164 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3EC73221E6FF93900854164 /* KUIKeyboard.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C3EC73001E6FE9B800854164 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3EC73211E6FF93900854164 /* KUIKeyboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,10 +118,12 @@
 				C3EC72FC1E6FE9B800854164 /* Sources */,
 				C3EC72FD1E6FE9B800854164 /* Frameworks */,
 				C3EC72FE1E6FE9B800854164 /* Resources */,
+				C3EC73251E6FF93900854164 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C3EC73241E6FF93900854164 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -116,6 +142,7 @@
 				TargetAttributes = {
 					C3EC72FF1E6FE9B800854164 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = KLVLNTBFM4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -178,6 +205,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C3EC73241E6FF93900854164 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KUIKeyboard;
+			targetProxy = C3EC73231E6FF93900854164 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C3EC73071E6FE9B800854164 /* Main.storyboard */ = {
@@ -293,10 +328,12 @@
 		C3EC73131E6FE9B800854164 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KLVLNTBFM4;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kofktu.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kofktu.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -305,10 +342,12 @@
 		C3EC73141E6FE9B800854164 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KLVLNTBFM4;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kofktu.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kofktu.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -333,6 +372,7 @@
 				C3EC73141E6FE9B800854164 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
