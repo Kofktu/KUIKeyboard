@@ -30,11 +30,6 @@ import KUIKeyboard
 
 var keyboard = KUIKeyboard()
 
-keyboard.delegate = self
-keyboard.onChangedKeyboardHeight = { [weak self] (visibleHeight) in
-  // Customize        
-}
-
 override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     keyboard.addObservers()
@@ -46,6 +41,25 @@ override func viewWillDisappear(_ animated: Bool) {
 }
 
 ```
+
+#### KUIKeyboardDelegate
+```swift
+keyboard.delegate = self
+
+...
+
+func keyboard(_ keyboard: KUIKeyboard, changed visibleHeight: CGFloat) {
+  // Customize
+}
+```
+
+#### Closure
+```swift
+keyboard.onChangedKeyboardHeight = { [weak self] (visibleHeight) in
+  // Customize        
+}
+```
+
 
 ## References
 - RxKeyboard (https://github.com/RxSwiftCommunity/RxKeyboard)
