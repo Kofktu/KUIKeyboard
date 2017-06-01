@@ -55,7 +55,7 @@ func keyboard(_ keyboard: KUIKeyboard, changed visibleHeight: CGFloat) {
 
 #### Closure
 ```swift
-keyboard.onChangedKeyboardHeight = { [weak self] (visibleHeight) in
+keyboard.onChangedKeyboardHeight = { (visibleHeight) in
   // Customize        
 }
 ```
