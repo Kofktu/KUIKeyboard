@@ -60,7 +60,7 @@ public final class KUIKeyboard: NSObject {
     }
     
     // MARK: - Action
-    func onKeyboardHandler(_ noti: Notification) {
+    @objc func onKeyboardHandler(_ noti: Notification) {
         guard let rect = (noti.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         keyboardFrame = rect
@@ -83,7 +83,7 @@ public final class KUIKeyboard: NSObject {
         }
     }
     
-    func onPan(_ gesture: UIPanGestureRecognizer) {
+    @objc func onPan(_ gesture: UIPanGestureRecognizer) {
         guard let window = UIApplication.shared.windows.first, gesture.state == .changed && keyboardFrame.minY < screenHeight else { return }
         
         let origin = gesture.location(in: window)
