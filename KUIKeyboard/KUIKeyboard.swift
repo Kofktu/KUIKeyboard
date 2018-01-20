@@ -84,7 +84,7 @@ public final class KUIKeyboard: NSObject {
     }
     
     @objc func onPan(_ gesture: UIPanGestureRecognizer) {
-        guard let window = UIApplication.shared.windows.first, gesture.state == .changed && keyboardFrame.minY < screenHeight else { return }
+        guard let window = UIApplication.shared.windows.first, gesture.state == .changed && visibleHeight > 0 else { return }
         
         let origin = gesture.location(in: window)
         var newFrame = keyboardFrame
