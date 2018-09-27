@@ -19,7 +19,11 @@ public final class KUIKeyboard: NSObject {
     }
     public fileprivate(set) var keyboardFrame = CGRect.zero {
         didSet {
-            visibleHeight = max(0.0, screenHeight - keyboardFrame.minY)
+            var height: CGFloat = max(0.0, screenHeight - keyboardFrame.minY)
+            if let window = UIApplication.shared.windows.first, height > 0, #available(iOS 11.0, *) {
+                height -= window.safeAreaInsets.bottom
+            }
+            visibleHeight = height
         }
     }
     public fileprivate(set) var visibleHeight: CGFloat = 0.0 {
@@ -38,8 +42,8 @@ public final class KUIKeyboard: NSObject {
         guard !isObserving else { return }
         
         isObserving = true
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHandler(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHandler(_:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHandler(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHandler(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         panGesture?.delegate = self
@@ -50,8 +54,8 @@ public final class KUIKeyboard: NSObject {
         guard isObserving else { return }
         
         isObserving = false
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if let gesture = panGesture {
             panGesture?.view?.removeGestureRecognizer(gesture)
@@ -61,18 +65,16 @@ public final class KUIKeyboard: NSObject {
     
     // MARK: - Action
     @objc func onKeyboardHandler(_ noti: Notification) {
-        guard let rect = (noti.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let rect = (noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         keyboardFrame = rect
         
         switch noti.name {
-        case Notification.Name.UIKeyboardWillChangeFrame:
-            if rect.minY < 0.0 {
-                var newFrame = rect
-                newFrame.origin.y = screenHeight - newFrame.height
-                keyboardFrame = newFrame
-            }
-        case Notification.Name.UIKeyboardWillHide:
+        case UIResponder.keyboardWillChangeFrameNotification:
+            var newFrame = rect
+            newFrame.origin.y = screenHeight - newFrame.height
+            keyboardFrame = newFrame
+        case UIResponder.keyboardWillHideNotification:
             if rect.minY < 0.0 {
                 var newFrame = rect
                 newFrame.origin.y = screenHeight
