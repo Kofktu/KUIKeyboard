@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KUIKeyboard"
-  s.version      = "1.6.0"
+  s.version      = "1.6.1"
   s.summary      = "Keyboard Handler in iOS"
 
   # This description is used to generate tags and improve search results.
