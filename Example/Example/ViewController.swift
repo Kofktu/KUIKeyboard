@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var visibleHeightLabel: UILabel!
     @IBOutlet weak var bottomViewBottom: NSLayoutConstraint!
 
-    fileprivate var keyboard = KUIKeyboard()
+    fileprivate lazy var keyboard: KUIKeyboard = KUIKeyboard(with: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
