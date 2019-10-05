@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KUIKeyboard"
-  s.version      = "1.6.1"
+  s.version      = "1.7.0"
   s.summary      = "Keyboard Handler in iOS"
 
   # This description is used to generate tags and improve search results.
@@ -129,7 +129,8 @@ Pod::Spec.new do |s|
   #  you can include multiple dependencies to ensure it works.
 
   s.requires_arc = true
-
+  s.swift_versions = [5.0]
+  
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
