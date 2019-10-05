@@ -1,6 +1,6 @@
 # KUIKeyboard
 
-![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
 [![CocoaPods](http://img.shields.io/cocoapods/v/KUIKeyboard.svg?style=flat)](http://cocoapods.org/?q=name%3AKUIKeyboard%20author%3AKofktu)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
@@ -12,8 +12,10 @@ It also perfectly works with UIScrollViewKeyboardDismissMode.interactive.
 ## Requirements
 
 - iOS 8.0+
-- Xcode 9.0
-- Swift 4.0 (>= 1.5.0)
+- Xcode 11.0
+- Swift 5.0 (>= [1.7.0](https://github.com/Kofktu/KUIKeyboard/tree/1.7.0))
+- Swift 4.2 (>= [1.6.0](https://github.com/Kofktu/KUIKeyboard/tree/1.6.0))
+- Swift 4.0 (>= [1.5.0](https://github.com/Kofktu/KUIKeyboard/tree/1.5.0))
 - Swift 3.0 ([1.0.0](https://github.com/Kofktu/KUIKeyboard/tree/1.0.0))
 
 ## Installation
