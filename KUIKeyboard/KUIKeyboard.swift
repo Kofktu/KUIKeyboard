@@ -98,7 +98,27 @@ public final class KUIKeyboard: NSObject {
         let keyboardFrameEndKey = UIKeyboardFrameEndUserInfoKey
         #endif
         
-        guard let rect = (noti.userInfo?[keyboardFrameEndKey] as? NSValue)?.cgRectValue else { return }
+        guard let rect = (noti.userInfo?[keyboardFrameEndKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        var isLocal: Bool = true
+        
+        if #available(iOS 9.0, *) {
+            #if swift(>=4.2)
+            let isLocalKey = UIResponder.keyboardIsLocalUserInfoKey
+            #else
+            let isLocalKey = UIKeyboardIsLocalUserInfoKey
+            #endif
+
+            (noti.userInfo?[isLocalKey] as? Bool).flatMap {
+                isLocal = $0
+            }
+        }
+        
+        guard isLocal else {
+            return
+        }
         
         var newFrame = rect
         
