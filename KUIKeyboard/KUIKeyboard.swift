@@ -19,17 +19,20 @@ public final class KUIKeyboard: NSObject {
     }
     public fileprivate(set) var keyboardFrame = CGRect.zero {
         didSet {
-            var height: CGFloat = max(0.0, screenHeight - keyboardFrame.minY)
+            var height: CGFloat = UIScreen.main.bounds.intersection(keyboardFrame).height
             
-            if isAdjustSafeAreaInset, #available(iOS 11.0, *) {
-                if let window = UIApplication.shared.windows.first, height > 0 {
+            if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
+                height -= window.floatingAreaInsets.bottom
+                
+                if isAdjustSafeAreaInset, #available(iOS 11.0, *) {
                     height -= window.safeAreaInsets.bottom
                 }
             }
             
-            visibleHeight = height
+            visibleHeight = max(0.0, height)
         }
     }
+    
     public fileprivate(set) var visibleHeight: CGFloat = 0.0 {
         didSet {
             onChangedKeyboardHeight?(visibleHeight)
@@ -169,5 +172,18 @@ extension KUIKeyboard: UIGestureRecognizerDelegate {
 fileprivate extension KUIKeyboard {
     var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
+    }
+}
+
+fileprivate extension UIWindow {
+    var floatingAreaInsets: UIEdgeInsets {
+        let converted = convert(frame, to: screen.coordinateSpace)
+        
+        return UIEdgeInsets(
+            top: converted.minY,
+            left: converted.minX,
+            bottom: screen.bounds.height - converted.maxY,
+            right: screen.bounds.width - converted.maxX
+        )
     }
 }
