@@ -19,17 +19,24 @@ public final class KUIKeyboard: NSObject {
     }
     public fileprivate(set) var keyboardFrame = CGRect.zero {
         didSet {
-            var height: CGFloat = max(0.0, screenHeight - keyboardFrame.minY)
-            
-            if isAdjustSafeAreaInset, #available(iOS 11.0, *) {
-                if let window = UIApplication.shared.windows.first, height > 0 {
+            var height: CGFloat
+
+            if let window = UIApplication.shared.windows.first {
+                height = window.convert(keyboardFrame, from: window.screen.coordinateSpace)
+                    .intersection(window.frame)
+                    .height
+                
+                if isAdjustSafeAreaInset, #available(iOS 11.0, *) {
                     height -= window.safeAreaInsets.bottom
                 }
+            } else {
+                height = screenHeight - keyboardFrame.minY
             }
             
-            visibleHeight = height
+            visibleHeight = max(0.0, height)
         }
     }
+    
     public fileprivate(set) var visibleHeight: CGFloat = 0.0 {
         didSet {
             onChangedKeyboardHeight?(visibleHeight)
